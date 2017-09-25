@@ -1,0 +1,6 @@
+base:
+  '*':
+    - reddit
+    
+    - reddit.tests
+    

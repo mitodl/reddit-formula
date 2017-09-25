@@ -1,0 +1,7 @@
+# -*- mode: yaml -*-
+reddit:
+  overrides:
+    pkg: reddit
+    conf_file: /usr/local/etc/reddit/reddit.conf
+  config:
+    key: othervalue

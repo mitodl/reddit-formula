@@ -1,0 +1,9 @@
+name: reddit
+os: RedHat, CentOS, Ubuntu, Debian
+os_family: RedHat, Debian
+version: 201709
+release: 1
+summary: Formula to install and manage the open source Reddit application
+description: Formula to install and manage the open source Reddit application
+top_level_dir: reddit
+recommended: 

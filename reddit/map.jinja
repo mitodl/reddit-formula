@@ -1,0 +1,14 @@
+{% set reddit = salt.grains.filter_by({
+    'default': {
+        'pkgs': ['reddit'],
+        'service': 'reddit',
+        'conf_file': '/etc/reddit/reddit.conf',
+        'config': {
+            'key': 'value',
+        },
+    },
+    'Debian': {
+    },
+    'RedHat': {
+    },
+}, grain='os_family', merge=salt.pillar.get('reddit:overrides), base='default') %}
