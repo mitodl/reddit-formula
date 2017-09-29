@@ -1,6 +1,6 @@
 {% from "reddit/map.jinja" import reddit with context %}
 
-reddit_service_running:
+gunicorn_service_running:
   service.running:
-    - name: {{ reddit.service }}
+    - name: gunicorn
     - enable: True
