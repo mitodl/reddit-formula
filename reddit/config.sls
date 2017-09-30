@@ -1,7 +1,7 @@
 {% from "reddit/map.jinja" import reddit with context %}
 
 {% for conf_name, val in reddit.queue_config_count.items() %}
-set_consumer_count_values:
+set_consumer_count_value_for_{{ conf_name }}:
   file.managed:
     - name: /home/deploy/consumer-count.d/{{ conf_name }}
     - makedirs: True
