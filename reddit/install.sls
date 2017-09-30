@@ -1,8 +1,5 @@
 {% from "reddit/map.jinja" import reddit with context %}
 
-include:
-  - .service
-
 create_deployment_user:
   user.present:
     - name: deploy
@@ -17,7 +14,7 @@ create_reddit_group:
 
 add_reddit_ppa:
   pkgrepo.managed:
-    - ppa: reddit/reddit
+    - ppa: reddit/ppa
 
 set_preference_to_reddit_ppa_packages:
   file.managed:
@@ -30,6 +27,7 @@ set_preference_to_reddit_ppa_packages:
 install_reddit_packages:
   pkg.installed:
     - pkgs: {{ reddit.pkgs }}
+    - refresh: True
     - require:
         - file: set_preference_to_reddit_ppa_packages
         - pkgrepo: add_reddit_ppa
@@ -42,7 +40,7 @@ install_reddit_packages:
 clone_{{ repo }}_repository:
   git.latest:
     - name: https://github.com/mitodl/{{ repo }}
-    - target: /home/deploy/
+    - target: /home/deploy/{{ repo }}
     - user: deploy
 {% endfor %}
 
@@ -67,6 +65,7 @@ create_helper_script_{{ script }}:
 create_directory_for_media_assets:
   file.directory:
     - name: /var/www/media/
+    - makedirs: True
     - user: deploy
     - group: www-data
     - recurse:

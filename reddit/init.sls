@@ -3,4 +3,3 @@ include:
   - .build
   - .mcrouter
   - .config
-  - .service

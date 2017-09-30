@@ -39,8 +39,8 @@ create_postgresql_functions:
         create or replace function domain(url text) returns text as $$
         select substring($1 from E'(?i)(?:.+?://)?(?:www[\d]*\.)?([^#/]*)/?')
         $$ language sql immutable;
-      - host: postgresql.service.consul
-      - user: {{ pg_user }}
-      - password: {{ pg_pass }}
-      - write: True
-      - maintenance_db: reddit
+    - host: postgresql.service.consul
+    - user: {{ pg_user }}
+    - password: {{ pg_pass }}
+    - write: True
+    - maintenance_db: reddit

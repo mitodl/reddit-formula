@@ -39,7 +39,7 @@ create_reddit_defaults_configuration:
         alias manage-consumers=$REDDIT_SRC/reddit/scripts/manage-consumers
 
 {% set reddit_config = salt.pillar.get('reddit:ini_config') %}
-{% set reddit_dir = '/home/deploy/src/reddit/r2' %}
+{% set reddit_dir = '/home/deploy/reddit/r2' %}
 
 write_reddit_config:
   file.managed:
@@ -61,3 +61,10 @@ restart_reddit_service:
     - name: reddit-restart
     - onchanges:
         - file: write_reddit_config
+
+gunicorn_service_running:
+  service.running:
+    - name: gunicorn
+    - enable: True
+    - require:
+        - file: install_geoip_gunicorn_configuration
