@@ -35,8 +35,8 @@ create_reddit_defaults_configuration:
         export REDDIT_USER=deploy
         export REDDIT_GROUP=reddit
         export REDDIT_CONSUMER_CONFIG=/home/deploy/consumer-count.d
-        alias wrap-job=$REDDIT_SRC/reddit/scripts/wrap-job
-        alias manage-consumers=$REDDIT_SRC/reddit/scripts/manage-consumers
+        alias wrap-job=/home/deploy/reddit/scripts/wrap-job
+        alias manage-consumers=/home/deploy/reddit/scripts/manage-consumers
 
 {% set reddit_config = salt.pillar.get('reddit:ini_config') %}
 {% set reddit_dir = '/home/deploy/reddit/r2' %}

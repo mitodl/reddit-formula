@@ -73,10 +73,11 @@ create_directory_for_media_assets:
         - group
 
 install_reddit_upstart_scripts:
-  file.copy:
-    - name: /etc/init/
-    - source: /home/deploy/reddit/upstart/
-    - subdir: True
+  module.run:
+    - name: file.copy
+    - dst: /etc/init/
+    - src: /home/deploy/reddit/upstart/
+    - recurse: True
 
 install_websocket_upstart_script:
   file.managed:
