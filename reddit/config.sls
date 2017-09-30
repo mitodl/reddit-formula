@@ -51,7 +51,7 @@ write_reddit_config:
 
 update_reddit_config:
   cmd.run:
-    - name: python updateini.py prod.update run.ini
+    - name: python updateini.py example.ini prod.update > run.ini
     - cwd: {{ reddit_dir }}
     - onchanges:
         - file: write_reddit_config
