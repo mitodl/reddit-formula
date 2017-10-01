@@ -4,8 +4,9 @@
                 'reddit-service-websockets'] %}
 build_python_package_for_{{ repo }}:
   pip.installed:
-    - name: /home/deploy/{{ repo }}
+    - editable: /home/deploy/{{ repo }}
     - no_deps: True
+    - upgrade: True
 {% endfor %}
 
 compile_translation_files:
