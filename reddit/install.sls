@@ -35,8 +35,7 @@ install_reddit_packages:
 {% for repo in ['reddit',
                 'reddit-i18n',
                 'refresh_token',
-                'reddit-service-websockets',
-                'reddit-service-activity'] %}
+                'reddit-service-websockets'] %}
 clone_{{ repo }}_repository:
   git.latest:
     - name: https://github.com/mitodl/{{ repo }}
@@ -107,9 +106,6 @@ create_redit_cron_configuration:
         */2  * * * * root /sbin/start --quiet reddit-job-broken_things
         */2  * * * * root /sbin/start --quiet reddit-job-rising
         0    * * * * root /sbin/start --quiet reddit-job-trylater
-
-        # liveupdate
-        *    * * * * root /sbin/start --quiet reddit-job-liveupdate_activity
 
         # jobs that recalculate time-limited listings (e.g. top this year)
         PGPASSWORD=password
