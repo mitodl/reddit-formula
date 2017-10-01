@@ -1,9 +1,9 @@
 create_reddit_keyspace:
   module.run:
-    - name: cassandra_cql.create_keyspace
-    - keyspace: reddit
-    - replication_strategy: SimpleStrategy
-    - replication_factor: 2
+    - name: cassandra_cql.cql_query
+    - query: |
+        CREATE KEYSPACE IF NOT EXISTS reddit WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 2};
+        CREATE TABLE IF NOT EXISTS reddit.permacache (key blob, column1 blob, value blob, PRIMARY KEY (key, column1));
     - contact_points: scylladb.service.consul
 
 {% set pg_user = salt.pillar.get('reddit:ini_config:DEFAULT:db_user') %}
