@@ -24,13 +24,15 @@ set_preference_to_reddit_ppa_packages:
         Pin: release o=LP-PPA-reddit
         Pin-Priority: 600
 
-install_reddit_packages:
+{% for pkgname in reddit.pkgs %}
+install_reddit_package_{{ pkgname }}:
   pkg.installed:
-    - pkgs: {{ reddit.pkgs }}
+    - name: {{ pkgname }}
     - refresh: True
     - require:
         - file: set_preference_to_reddit_ppa_packages
         - pkgrepo: add_reddit_ppa
+{% endfor %}
 
 {% for repo in ['reddit',
                 'reddit-i18n',
