@@ -93,7 +93,7 @@ install_websocket_upstart_script:
 
         limit nofile 65535 65535
 
-        exec baseplate-serve2 --bind localhost:9001 /home/deploy/reddit-service-websockets/example.ini
+        exec baseplate-serve2 --bind localhost:9001 /home/deploy/reddit-service-websockets/run.ini
 
 create_redit_cron_configuration:
   file.managed:

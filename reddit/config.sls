@@ -39,7 +39,16 @@ create_reddit_defaults_configuration:
         alias manage-consumers=/home/deploy/reddit/scripts/manage-consumers
 
 {% set reddit_config = salt.pillar.get('reddit:ini_config') %}
+{% set websockets_config = salt.pillar.get('reddit:websockets_config') %}
 {% set reddit_dir = '/home/deploy/reddit/r2' %}
+
+write_websockets_config:
+  file.managed:
+    - name: /home/deploy/reddit-service-websockets/run.ini
+    - source: salt://reddit/templates/conf.ini.jinja
+    - template: jinja
+    - context:
+        settings: {{ websockets_config }}
 
 write_reddit_config:
   file.managed:
@@ -61,6 +70,7 @@ restart_reddit_service:
     - name: reddit-restart
     - onchanges:
         - file: write_reddit_config
+        - file: write_websockets_config
 
 gunicorn_service_running:
   service.running:
