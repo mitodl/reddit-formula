@@ -1,7 +1,8 @@
 {% for repo in ['reddit/r2',
                 'reddit-i18n',
                 'refresh_token',
-                'reddit-service-websockets'] %}
+                'reddit-service-websockets',
+                'reddit-service-activity'] %}
 build_python_package_for_{{ repo }}:
   pip.installed:
     - editable: /home/deploy/{{ repo }}

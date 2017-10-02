@@ -37,7 +37,8 @@ install_reddit_package_{{ pkgname }}:
 {% for repo in ['reddit',
                 'reddit-i18n',
                 'refresh_token',
-                'reddit-service-websockets'] %}
+                'reddit-service-websockets',
+                'reddit-service-activity'] %}
 clone_{{ repo }}_repository:
   git.latest:
     - name: https://github.com/mitodl/{{ repo }}
