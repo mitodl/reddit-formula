@@ -13,10 +13,8 @@ build_python_package_for_{{ repo }}:
 compile_translation_files:
   cmd.run:
     - name: make -C /home/deploy/reddit-i18n clean all
-    - user: deploy
 
 compile_cython_files:
   cmd.run:
     - name: make clean pyx
-    - user: deploy
     - cwd: /home/deploy/reddit/r2
