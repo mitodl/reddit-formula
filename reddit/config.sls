@@ -15,9 +15,9 @@ install_geoip_gunicorn_configuration:
     - contents: |
         CONFIG = {
             "mode": "wsgi",
-            "working_dir": "$REDDIT_SRC/reddit/scripts",
-            "user": "$REDDIT_USER",
-            "group": "$REDDIT_USER",
+            "working_dir": "/home/deploy/reddit/scripts",
+            "user": "deploy",
+            "group": "deploy",
             "args": (
                 "--bind=127.0.0.1:5000",
                 "--workers=1",
