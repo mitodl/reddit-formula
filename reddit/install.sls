@@ -47,7 +47,7 @@ clone_{{ repo }}_repository:
 {% endfor %}
 
 {% set reddithelpers = {
-    'reddit-run': 'exec paster --plugin=r2 run /home/deploy/reddit/r2/run.ini "\$@"',
+    'reddit-run': 'exec paster --plugin=r2 run /home/deploy/reddit/r2/run.ini "$@"',
     'reddit-shell': 'exec paster --plugin=r2 shell /home/deploy/reddit/r2/run.ini',
     'reddit-start': 'initctl emit reddit-start',
     'reddit-stop': 'initctl emit reddit-stop',
