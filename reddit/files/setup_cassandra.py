@@ -5,7 +5,7 @@ sys = pycassa.SystemManager("cassandra.service.consul:9160")
 
 if "reddit" not in sys.list_keyspaces():
     print "creating keyspace 'reddit'"
-    sys.create_keyspace("reddit", "SimpleStrategy", {"replication_factor": "1"})
+    sys.create_keyspace("reddit", "SimpleStrategy", {"replication_factor": "2"})
     print "done"
 
 if "permacache" not in sys.get_keyspace_column_families("reddit"):
