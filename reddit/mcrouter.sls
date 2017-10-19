@@ -21,5 +21,6 @@ ensure_mcrouter_is_running:
   service.running:
     - name: mcrouter
     - enable: True
+    - restart: True
     - onchanges:
         - file: create_mcrouter_configuration
