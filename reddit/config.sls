@@ -78,3 +78,9 @@ gunicorn_service_running:
     - enable: True
     - require:
         - file: install_geoip_gunicorn_configuration
+
+run_reddit_start_if_restart_fails:
+  cmd.run:
+    - name: reddit-start
+    - onfail:
+        - cmd: restart_reddit_service
