@@ -38,6 +38,16 @@ create_reddit_defaults_configuration:
         alias wrap-job=/home/deploy/reddit/scripts/wrap-job
         alias manage-consumers=/home/deploy/reddit/scripts/manage-consumers
 
+create_reddit_log_folder:
+  file.directory:
+    - name: /var/log/reddit
+    - user: deploy
+    - group: deploy
+    - makedirs: True
+    - recurse:
+      - user
+      - group
+
 {% set reddit_config = salt.pillar.get('reddit:ini_config') %}
 {% set websockets_config = salt.pillar.get('reddit:websockets_config') %}
 {% set reddit_dir = '/home/deploy/reddit/r2' %}
