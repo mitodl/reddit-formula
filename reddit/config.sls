@@ -37,6 +37,9 @@ create_reddit_defaults_configuration:
         export REDDIT_CONSUMER_CONFIG=/home/deploy/consumer-count.d
         alias wrap-job=/home/deploy/reddit/scripts/wrap-job
         alias manage-consumers=/home/deploy/reddit/scripts/manage-consumers
+        {% for key, val in salt.pillar.get('reddit:environment', {}).items() %}
+        export {{ key }}={{ val }}
+        {% endfor %}
 
 create_reddit_log_folder:
   file.directory:
