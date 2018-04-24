@@ -1,6 +1,7 @@
 {% set ENVIRONMENT = salt.grains.get('environment') %}
 {% set reddit_oauth = salt.pillar.get('reddit:oauth_client') %}
 {% set reddit_admin = salt.pillar.get('reddit:admin_user') %}
+{% set system_user = salt.pillar.get('reddit:system_user') %}
 {% set pg_user = salt.pillar.get('reddit:ini_config:DEFAULT:db_user') %}
 {% set pg_pass = salt.pillar.get('reddit:ini_config:DEFAULT:db_pass') %}
 
@@ -25,7 +26,10 @@ seed_reddit_with_admin_and_client:
     - template: jinja
     - mode: 755
     - context:
-        account_password: {{ reddit_admin.password }}
+        admin_name: {{ reddit_admin.username }}
+        admin_password: {{ reddit_admin.password }}
+        system_name: {{ system_user.username }}
+        system_password: {{ system_user.password }}
         oauth_client_id: {{ reddit_oauth.client_id }}
         oauth_client_secret: {{ reddit_oauth.client_secret }}
   cmd.run:
