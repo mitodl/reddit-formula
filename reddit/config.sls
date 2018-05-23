@@ -8,24 +8,6 @@ set_consumer_count_value_for_{{ conf_name }}:
     - contents: {{ val }}
 {% endfor %}
 
-install_geoip_gunicorn_configuration:
-  file.managed:
-    - name: /etc/gunicorn.d/geoip.conf
-    - makedirs: True
-    - contents: |
-        CONFIG = {
-            "mode": "wsgi",
-            "working_dir": "/home/deploy/reddit/scripts",
-            "user": "deploy",
-            "group": "deploy",
-            "args": (
-                "--bind=127.0.0.1:5000",
-                "--workers=1",
-                 "--limit-request-line=8190",
-                 "geoip_service:application",
-            ),
-        }
-
 create_reddit_defaults_configuration:
   file.managed:
     - name: /etc/default/reddit
@@ -84,13 +66,6 @@ restart_reddit_service:
     - onchanges:
         - file: write_reddit_config
         - file: write_websockets_config
-
-gunicorn_service_running:
-  service.running:
-    - name: gunicorn
-    - enable: True
-    - require:
-        - file: install_geoip_gunicorn_configuration
 
 run_reddit_start_if_restart_fails:
   cmd.run:
