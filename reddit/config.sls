@@ -43,7 +43,7 @@ write_websockets_config:
     - source: salt://reddit/templates/conf.ini.jinja
     - template: jinja
     - context:
-        settings: {{ websockets_config }}
+        settings: {{ websockets_config|tojson }}
 
 write_reddit_config:
   file.managed:
@@ -51,7 +51,7 @@ write_reddit_config:
     - source: salt://reddit/templates/conf.ini.jinja
     - template: jinja
     - context:
-        settings: {{ reddit_config }}
+        settings: {{ reddit_config|tojson }}
 
 update_reddit_config:
   cmd.run:
